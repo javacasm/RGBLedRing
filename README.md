@@ -111,3 +111,22 @@ void test_joystick(){
     y_direction = -1; 
 }
 ```
+
+## micropython
+
+Instalamos el firmware de [micropython v13](https://micropython.org/resources/firmware/esp32-idf3-20200902-v1.13.bin) haciendo
+
+Usamos esptool para instalar el firmare (pip3 install esptool)
+
+Borramos el firmware actual
+
+```sh
+esptool.py --port /dev/ttyUSB0 erase_flash
+```
+
+Escribimos el firmware de micropython
+
+
+```sh
+esptool.py --chip esp32 --port /dev/ttyUSB0 write_flash -z 0x1000 esp32-idf3-20200902-v1.13.bin
+```
