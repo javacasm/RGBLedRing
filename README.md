@@ -130,3 +130,60 @@ Escribimos el firmware de micropython
 ```sh
 esptool.py --chip esp32 --port /dev/ttyUSB0 write_flash -z 0x1000 esp32-idf3-20200902-v1.13.bin
 ```
+
+Activamos la conexión remota por REPL con
+
+```python
+import webrepl_setup
+```
+
+Configuramos la conexión wifi con
+
+```python
+
+import webrepl
+import network
+iw = network.WLAN(network.STA_IF)
+iw.active(True)
+iw.connect('WIFI-SSID','PASSWORD')
+webrepl.start()
+iw.ifconfig()
+print('wemos D1 R32 RGB-Ring')
+
+```
+
+Ahora ya podemos conectarnos al REPL vía wifi desde la URL
+
+```
+http://micropython.org/webrepl/?#IP_ESP32:8266
+```
+
+Y ya podemos enviar el fichero **boot.py** con la configuración del wifi y de todo lo necesario
+
+## Neopixels
+
+```python
+import neopixel, machine
+
+ledRGB = neopixel.NeoPixel(machine.Pin(18),1) 
+
+# Rojo
+ledRGB[0] = (50,0,0)
+ledRGB.write()
+
+```
+
+```python
+import neopixel, machine
+import time
+
+ledRGB = neopixel.NeoPixel(machine.Pin(18), 60)
+
+for i in range(0,60):
+  ledRGB[i] = (50,0,0)
+  ledRGB.write()
+  time.sleep(1)
+  ledRGB[i] = (0,0,0)
+
+
+```
