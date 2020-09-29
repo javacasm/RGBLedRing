@@ -15,7 +15,7 @@ GRAY_LIGHT  = (150, 150, 150)
 GRAY_DARK   = (50, 50, 50)
 
 def flash(c = WHITE,t = 0.001):
-    setColor(c = c)
+    setColor(c)
     time.sleep(t)
     black()
     
@@ -37,9 +37,8 @@ def _setColor(c):
         ledRGB[i] = c   
 
 def setColor(c):
-     _setColor(c):
+    _setColor(c)
     ledRGB.write()
-
 
 def black():
     setColor(BLACK)
