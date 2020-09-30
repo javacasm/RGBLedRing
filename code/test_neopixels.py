@@ -4,7 +4,7 @@ import time
 
 import myNeopixels
 
-v = '0.8.3'
+v = '0.9.4'
 
 
 def test_RGB():
@@ -38,3 +38,8 @@ def test_fade():
     myNeopixels.fadeIn(myNeopixels.BLACK, myNeopixels.GRAY, 0.1, 25)                                                                          
     time.sleep(3)
     myNeopixels.black()
+
+def test_trazo():
+    for i in range(0, myNeopixels.N):
+        myNeopixels.trazo(myNeopixels.BLACK, myNeopixels.ALMOST_BLACK , i)
+        time.sleep(0.05)
