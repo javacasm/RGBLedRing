@@ -2,7 +2,7 @@ import neopixel
 import machine
 import time
 
-v = '0.8'
+v = '0.9.5'
 
 N = 60
 
@@ -13,6 +13,7 @@ WHITE = (255, 255, 255)
 GRAY  = (100, 100, 100)
 GRAY_LIGHT  = (150, 150, 150)
 GRAY_DARK   = (50, 50, 50)
+ALMOST_BLACK = (25, 25, 25)
 
 def flash(c = WHITE,t = 0.001):
     setColor(c)
@@ -46,3 +47,11 @@ def black():
 def white():
     setColor(WHITE)
 
+def trazo(c1, c2, pixel):
+    for i in range(0,N//2):
+        r = puntoMedio(c1[0], c2[0], i, N//2)
+        g = puntoMedio(c1[1], c2[1], i, N//2)
+        b = puntoMedio(c1[2], c2[2], i, N//2)
+        ledRGB[(pixel - i) % N] = (r, g, b)
+        ledRGB[(pixel + i) % N] = (r, g, b)
+    ledRGB.write()
